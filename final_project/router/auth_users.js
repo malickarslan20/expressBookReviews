@@ -62,13 +62,11 @@ regd_users.post("/login", (req, res) => {
 
 
 // ===================== ADD / MODIFY REVIEW =====================
-
+// Add or Modify a book review
 regd_users.put("/auth/review/:isbn", (req, res) => {
 
     const isbn = req.params.isbn;
-
     const username = req.session.authorization.username;
-
     const review = req.query.review;
 
     if (!books[isbn]) {
@@ -80,12 +78,11 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
     books[isbn].reviews[username] = review;
 
     return res.status(200).json({
-        message: `Review for ISBN ${isbn} added/updated successfully`,
+        message: `Review for ISBN ${isbn} added/updated`,
         reviews: books[isbn].reviews
     });
 
 });
-
 
 // ===================== DELETE REVIEW =====================
 
